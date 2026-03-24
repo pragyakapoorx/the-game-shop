@@ -8,7 +8,6 @@ import 'features/game_detail/game_detail_screen.dart';
 import 'features/checkout/checkout_screen.dart';
 import 'features/library/library_screen.dart';
 import 'features/orders/orders_screen.dart';
-import 'features/orders/orders_screen.dart';
 
 // Temporary placeholder until we build the real screens next
 class PlaceholderScreen extends StatelessWidget {

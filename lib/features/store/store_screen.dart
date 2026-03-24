@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../shared/cards/game_card.dart';
 import '../../core/theme/cyber_colors.dart';
+import '../arcade/arcade_section.dart'; // <-- Imported the new inline Arcade Section
 import 'store_providers.dart';
 import 'widgets/hero_section.dart';
 import 'widgets/store_controls.dart';
@@ -32,6 +33,7 @@ class StoreScreen extends ConsumerWidget {
               TextSpan(
                 children: [
                   const TextSpan(text: 'ALL ', style: TextStyle(color: CyberColors.text)),
+                  // NO CONST HERE!
                   TextSpan(text: 'GAMES', style: TextStyle(color: CyberColors.green, shadows: CyberColors.greenGlow)),
                 ],
               ),
@@ -56,9 +58,9 @@ class StoreScreen extends ConsumerWidget {
           ),
         ),
 
-        // --- FLASH DEAL BANNER PLACEHOLDER ---
+        // --- THE INLINE ARCADE SECTION ---
         const SliverToBoxAdapter(
-          child: SizedBox(height: 64), // We can add the FlashDealBanner widget here later
+          child: ArcadeSection(),
         ),
 
         // --- FREE TO PLAY GRID ---
@@ -69,6 +71,7 @@ class StoreScreen extends ConsumerWidget {
               TextSpan(
                 children: [
                   const TextSpan(text: 'FREE TO ', style: TextStyle(color: CyberColors.text)),
+                  // NO CONST HERE!
                   TextSpan(text: 'PLAY', style: TextStyle(color: CyberColors.green, shadows: CyberColors.greenGlow)),
                 ],
               ),
