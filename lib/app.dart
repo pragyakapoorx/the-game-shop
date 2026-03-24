@@ -8,6 +8,7 @@ import 'features/game_detail/game_detail_screen.dart';
 import 'features/checkout/checkout_screen.dart';
 import 'features/library/library_screen.dart';
 import 'features/orders/orders_screen.dart';
+import 'features/boot/boot_screen.dart'; // <-- IMPORT THE BOOT SCREEN
 
 // Temporary placeholder until we build the real screens next
 class PlaceholderScreen extends StatelessWidget {
@@ -20,8 +21,15 @@ class PlaceholderScreen extends StatelessWidget {
 }
 
 final _router = GoRouter(
-  initialLocation: '/store',
+  initialLocation: '/', // <-- CHANGED TO START AT BOOT SCREEN
   routes: [
+    // --- BOOT SCREEN (Outside ShellRoute so it hides the Nav Bar) ---
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const BootScreen(),
+    ),
+
+    // --- MAIN APP (Inside ShellRoute to show the Nav Bar) ---
     ShellRoute(
       builder: (context, state, child) {
         return MainLayout(child: child);
@@ -29,7 +37,7 @@ final _router = GoRouter(
       routes: [
         GoRoute(
           path: '/store',
-          builder: (context, state) => const StoreScreen(), // <-- Update this!
+          builder: (context, state) => const StoreScreen(),
         ),
         GoRoute(
           path: '/game/:id',

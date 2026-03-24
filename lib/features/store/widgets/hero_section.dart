@@ -6,6 +6,7 @@ import '../../../core/theme/cyber_colors.dart';
 import '../../../core/clippers/chamfer_clipper.dart';
 import '../../../providers/game_data_provider.dart';
 import '../../../shared/buttons/cyber_button.dart';
+import '../../../shared/widgets/cyber_glitch_text.dart';
 
 class HeroSection extends ConsumerStatefulWidget {
   const HeroSection({super.key});
@@ -15,7 +16,6 @@ class HeroSection extends ConsumerStatefulWidget {
 }
 
 class _HeroSectionState extends ConsumerState<HeroSection> {
-  // Matches your JS FEATURED_GAMES indices (Baldur's Gate, Cyberpunk, Zelda, Hogwarts, Death Stranding)
   final List<int> _featuredIds = [1, 10, 11, 2, 8];
   int _currentIndex = 0;
   Timer? _timer;
@@ -37,7 +37,7 @@ class _HeroSectionState extends ConsumerState<HeroSection> {
 
   void _setIndex(int index) {
     setState(() => _currentIndex = index);
-    _startTimer(); // Reset timer on manual click
+    _startTimer();
   }
 
   @override
@@ -89,6 +89,7 @@ class _HeroSectionState extends ConsumerState<HeroSection> {
               children: [
                 Container(
                   width: 6, height: 6,
+                  // REMOVED CONST HERE
                   decoration: BoxDecoration(color: CyberColors.green, boxShadow: CyberColors.greenGlow),
                 ),
                 const SizedBox(width: 8),
@@ -98,10 +99,18 @@ class _HeroSectionState extends ConsumerState<HeroSection> {
           ),
         ),
         const SizedBox(height: 20),
+
+        // --- GLITCH TEXT HEADER ---
+        const CyberGlitchText(
+          text: 'LEVEL UP',
+          style: TextStyle(fontFamily: 'Orbitron', fontSize: 48, fontWeight: FontWeight.w900, height: 1.1),
+        ),
         const Text(
-          'LEVEL UP\nYOUR GAME.',
+          'YOUR GAME.',
           style: TextStyle(fontFamily: 'Orbitron', fontSize: 48, fontWeight: FontWeight.w900, height: 1.1, color: CyberColors.text),
         ),
+        // --------------------------
+
         const SizedBox(height: 16),
         const Text(
           '> The best games at the best prices. Instant digital delivery on every platform.',
@@ -112,11 +121,11 @@ class _HeroSectionState extends ConsumerState<HeroSection> {
           spacing: 16,
           runSpacing: 16,
           children: [
-            CyberButton(text: 'Browse Games', onPressed: () {}), // We'll hook up scroll later
+            CyberButton(text: 'Browse Games', onPressed: () {}),
             CyberButton(
                 text: 'View Cart',
                 variant: CyberButtonVariant.outline,
-                hoverTextColor: Colors.black, // <-- Added custom override here
+                hoverTextColor: Colors.black,
                 onPressed: () => context.go('/cart')
             ),
           ],
@@ -172,12 +181,14 @@ class _HeroSectionState extends ConsumerState<HeroSection> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // REMOVED CONST HERE
                     Text(game.genre.toUpperCase(), style: TextStyle(color: CyberColors.cyan, fontFamily: 'Share Tech Mono', fontSize: 10, letterSpacing: 3, shadows: CyberColors.cyanGlow)),
                     const SizedBox(height: 6),
                     Text(game.name.toUpperCase(), style: const TextStyle(fontFamily: 'Orbitron', fontSize: 20, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 6),
                     Row(
                       children: [
+                        // REMOVED CONST HERE
                         Text(game.isFree ? 'FREE' : '\$${game.price}', style: TextStyle(fontFamily: 'JetBrains Mono', fontSize: 20, fontWeight: FontWeight.bold, color: CyberColors.green, shadows: CyberColors.greenGlow)),
                         if (game.originalPrice != null) ...[
                           const SizedBox(width: 8),
