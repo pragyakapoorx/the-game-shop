@@ -4,6 +4,7 @@ import '../../../core/theme/cyber_colors.dart';
 import '../../../providers/game_data_provider.dart';
 import 'widgets/detail_hero.dart';
 import 'widgets/detail_body.dart';
+import 'widgets/review_section.dart';
 
 class GameDetailScreen extends ConsumerWidget {
   final int gameId;
@@ -30,6 +31,12 @@ class GameDetailScreen extends ConsumerWidget {
           children: [
             DetailHero(game: game),
             DetailBody(game: game),
+
+            // --- REVIEWS SECTION ---
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 64),
+              child: ReviewSection(game: game),
+            ),
           ],
         ),
       ),
